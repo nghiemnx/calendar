@@ -18,6 +18,13 @@ describe('Vietnamese lunar calendar', () => {
     expect(solarToLunar({ year: 2026, month: 2, day: 17 })).toMatchObject({ day: 1, month: 1, year: 2026, isLeap: false })
   })
 
+  it('provides the zodiac animal for the selected lunar day', () => {
+    expect(solarToLunar({ year: 2026, month: 11, day: 16 })).toMatchObject({
+      dayCanChi: 'Giáp Ngọ',
+      zodiac: { branch: 'Ngọ', name: 'Ngựa', symbol: '🐴' },
+    })
+  })
+
   it('marks the Vietnamese leap month in 2004', () => {
     expect(solarToLunar({ year: 2004, month: 3, day: 21 })).toMatchObject({ day: 1, month: 2, year: 2004, isLeap: true })
   })

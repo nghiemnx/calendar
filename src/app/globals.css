@@ -230,7 +230,10 @@ h1 { font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.04em; line-height: 1.
 .day-view .tear-calendar-sheet { min-height: 0; padding: 0 24px 24px; box-shadow: 0 4px 0 -1px var(--page-edge), 0 8px 0 -3px var(--line), var(--shadow); }
 .day-view .sheet-topline { gap: 12px; font-size: 11px; letter-spacing: 0.08em; }
 .day-view .sheet-date-row { grid-template-columns: 1fr; gap: 24px; padding: 28px 0 0; }
-.day-view .sheet-date { display: grid; min-height: 250px; justify-items: center; align-content: center; gap: 20px; }
+.day-view .sheet-date { position: relative; display: grid; min-height: 250px; overflow: hidden; isolation: isolate; justify-items: center; align-content: center; gap: 20px; border-radius: 18px; }
+.day-view .sheet-date::before { position: absolute; z-index: -1; top: 50%; right: -8%; color: var(--green); content: attr(data-zodiac-symbol); font-family: "Apple Color Emoji", "Segoe UI Emoji", sans-serif; font-size: clamp(150px, 34vw, 230px); line-height: 1; opacity: .1; pointer-events: none; transform: translateY(-50%) rotate(-10deg); }
+.day-view.is-holiday .sheet-date::before { opacity: .13; }
+.day-view .sheet-date > * { position: relative; z-index: 1; }
 .day-view .sheet-date-number { font-size: clamp(132px, 30vw, 188px); letter-spacing: -0.06em; line-height: 1; color: var(--ink); font-variant-numeric: lining-nums tabular-nums; }
 .day-view .sheet-lunar { display: grid; grid-template-columns: auto 1fr; column-gap: 16px; row-gap: 4px; align-items: center; padding: 18px 0 0; border: 0; border-top: 1px solid var(--line); }
 .sheet-lunar-label { grid-column: 2; grid-row: 1; color: var(--calendar-muted); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
@@ -344,6 +347,7 @@ h1 { font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.04em; line-height: 1.
   .sheet-topline { padding-top: 22px; font-size: 10px; }
   .day-view .sheet-date-row { grid-template-columns: 1fr; gap: 12px; padding: 18px 0 12px; }
   .day-view .sheet-date { min-height: 230px; justify-content: center; gap: 14px; }
+  .day-view .sheet-date::before { right: -12%; font-size: clamp(130px, 42vw, 190px); }
   .day-view .sheet-date-number { font-size: clamp(100px, 28vw, 136px); }
   .sheet-date-label { font-size: 11px; }
   .day-view .sheet-lunar { padding-top: 12px; padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }

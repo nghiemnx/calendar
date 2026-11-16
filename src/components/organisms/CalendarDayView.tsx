@@ -29,7 +29,10 @@ function DaySheetContent({ date, lunar, holidays, quote }: DaySheet & { quote: F
         <span>{formatWeekday(date).toUpperCase()}</span>
       </div>
       <div className="sheet-date-row">
-        <div className="sheet-date">
+        <div
+          className="sheet-date"
+          data-zodiac-symbol={lunar.zodiac.symbol}
+        >
           <span className="sheet-date-number">{date.day}</span>
           {quote && <FolkQuoteCard quote={quote} />}
         </div>

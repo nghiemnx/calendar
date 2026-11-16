@@ -9,6 +9,14 @@ export type SolarDate = {
 
 export type LunarDate = SolarDate & {
   isLeap: boolean
+  dayCanChi: string
+  zodiac: Zodiac
+}
+
+export type Zodiac = {
+  branch: string
+  name: string
+  symbol: string
 }
 
 export type { VietnameseHoliday } from '../constants/holidays'
@@ -26,6 +34,20 @@ export const MAX_DATE: SolarDate = { year: 2050, month: 12, day: 31 }
 const VIETNAM_TIME_ZONE = 'Asia/Ho_Chi_Minh'
 const LUNAR_MONTH_NAMES = ['', 'Giêng', 'Hai', 'Ba', 'Tư', 'Năm', 'Sáu', 'Bảy', 'Tám', 'Chín', 'Mười', 'Một', 'Chạp']
 const WEEKDAY_NAMES = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy']
+const ZODIACS: Zodiac[] = [
+  { branch: 'Tý', name: 'Chuột', symbol: '🐭' },
+  { branch: 'Sửu', name: 'Trâu', symbol: '🐮' },
+  { branch: 'Dần', name: 'Hổ', symbol: '🐯' },
+  { branch: 'Mão', name: 'Mèo', symbol: '🐰' },
+  { branch: 'Thìn', name: 'Rồng', symbol: '🐲' },
+  { branch: 'Tỵ', name: 'Rắn', symbol: '🐍' },
+  { branch: 'Ngọ', name: 'Ngựa', symbol: '🐴' },
+  { branch: 'Mùi', name: 'Dê', symbol: '🐐' },
+  { branch: 'Thân', name: 'Khỉ', symbol: '🐵' },
+  { branch: 'Dậu', name: 'Gà', symbol: '🐔' },
+  { branch: 'Tuất', name: 'Chó', symbol: '🐶' },
+  { branch: 'Hợi', name: 'Heo', symbol: '🐷' },
+]
 
 function dateToUtcDate(date: SolarDate): Date {
   return new Date(Date.UTC(date.year, date.month - 1, date.day))
@@ -88,11 +110,17 @@ export function getVietnamDate(now: Date): SolarDate {
 
 export function solarToLunar(date: SolarDate): LunarDate {
   const lunar = LichTa.toLunar(date.day, date.month, date.year, 7)
+  const dayCanChi = lunar.dayCanChi ?? ''
+  const branch = dayCanChi.split(' ').at(-1) ?? ''
+  const zodiac = ZODIACS.find((item) => item.branch === branch) ?? ZODIACS[0]
+
   return {
     day: lunar.day,
     month: lunar.month,
     year: lunar.year,
     isLeap: lunar.isLeap,
+    dayCanChi,
+    zodiac,
   }
 }
 
