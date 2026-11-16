@@ -46,7 +46,7 @@ export default function CalendarPanel({ monthLabel, monthNames, yearOptions, cel
       <div className="calendar-panel-topline">
         <ViewModeToggle value={viewMode} onChange={onViewModeChange} />
         {viewMode === 'month' && (
-          <div className="calendar-toolbar-row desktop-calendar-toolbar">
+          <div className="calendar-toolbar-row">
             <MonthNavigator
               label={monthLabel}
               canGoPrevious={canGoPrevious}
@@ -56,7 +56,7 @@ export default function CalendarPanel({ monthLabel, monthNames, yearOptions, cel
               onOpenPicker={onOpenPicker}
               pickerOpen={pickerOpen}
             />
-            <TextButton tone="today" onClick={onToday}>Hôm nay</TextButton>
+            <TextButton className="desktop-today-button" tone="today" onClick={onToday}>Hôm nay</TextButton>
           </div>
         )}
       </div>
@@ -76,16 +76,7 @@ export default function CalendarPanel({ monthLabel, monthNames, yearOptions, cel
           <CalendarLegend />
           <CalendarGrid label={monthLabel} cells={cells} selectedDate={selectedDate} today={today} onSelectDate={onSelectDate} />
           <p className="calendar-footnote">Số lớn là ngày dương · số nhỏ là ngày âm</p>
-          <div className="mobile-calendar-actions" aria-label="Điều hướng lịch tháng">
-            <MonthNavigator
-              label={monthLabel}
-              canGoPrevious={canGoPrevious}
-              canGoNext={canGoNext}
-              onPrevious={onPrevious}
-              onNext={onNext}
-              onOpenPicker={onOpenPicker}
-              pickerOpen={pickerOpen}
-            />
+          <div className="mobile-calendar-actions">
             <TextButton tone="today" onClick={onToday}>Hôm nay</TextButton>
           </div>
         </>

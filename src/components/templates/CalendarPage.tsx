@@ -4,7 +4,9 @@ import { useEffect, useMemo, useState } from 'react'
 import CalendarPanel from '@/components/organisms/CalendarPanel'
 import DateDetailPanel from '@/components/organisms/DateDetailPanel'
 import SiteHeader from '@/components/organisms/SiteHeader'
+import AppUpdateNotice from '@/components/molecules/AppUpdateNotice'
 import type { CalendarViewMode } from '@/components/molecules/ViewModeToggle'
+import { APP_VERSION } from '@/lib/app-version'
 import {
   addDays,
   addMonths,
@@ -142,10 +144,13 @@ export default function CalendarPage({ initialToday }: CalendarPageProps) {
         />
         {viewMode === 'month' && <DateDetailPanel cell={selectedCell} today={today} />}
       </section>
+      <AppUpdateNotice />
       <footer className="site-footer">
         <span>© {initialToday.year} Lịch âm dương</span>
         <span aria-hidden="true">·</span>
         <span>Hiển thị theo múi giờ UTC+7</span>
+        <span aria-hidden="true">·</span>
+        <span>v{APP_VERSION}</span>
       </footer>
     </main>
   )
