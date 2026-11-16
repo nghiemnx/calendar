@@ -1,9 +1,26 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Lịch âm dương',
   description: 'Tra cứu lịch dương và lịch âm Việt Nam nhanh gọn.',
+  manifest: './manifest.webmanifest',
+  icons: {
+    icon: [{ url: './favicon.svg', type: 'image/svg+xml' }],
+    apple: [{ url: './apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Lịch Việt',
+  },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#365e49',
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
