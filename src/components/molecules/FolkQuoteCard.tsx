@@ -15,7 +15,7 @@ export default function FolkQuoteCard({ date }: FolkQuoteCardProps) {
   useEffect(() => {
     let active = true
 
-    fetch('/data/cau_dao.json', { cache: 'force-cache' })
+    fetch('./data/cau_dao.json', { cache: 'force-cache' })
       .then((response) => {
         if (!response.ok) throw new Error('Không thể tải dữ liệu ca dao')
         return response.json() as Promise<unknown>

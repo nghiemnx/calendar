@@ -10,7 +10,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="vi" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `try { var theme = localStorage.getItem('calendar-theme'); document.documentElement.classList.toggle('dark', theme === 'dark' || (theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)); } catch (_) { document.documentElement.classList.toggle('dark', matchMedia('(prefers-color-scheme: dark)').matches); }` }} />
+        <script dangerouslySetInnerHTML={{ __html: `try { var theme = localStorage.getItem('calendar-theme'); document.documentElement.classList.toggle('dark', theme === 'dark'); } catch (_) { document.documentElement.classList.remove('dark'); }` }} />
       </head>
       <body>{children}</body>
     </html>

@@ -13,8 +13,7 @@ export default function ThemeToggle() {
     const timer = window.setTimeout(() => {
       let storedTheme: string | null = null
       try { storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY) } catch { /* Storage may be unavailable. */ }
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      const nextTheme = storedTheme === 'dark' || (!storedTheme && prefersDark) ? 'dark' : 'light'
+      const nextTheme = storedTheme === 'dark' ? 'dark' : 'light'
 
       document.documentElement.classList.toggle('dark', nextTheme === 'dark')
       setTheme(nextTheme)
