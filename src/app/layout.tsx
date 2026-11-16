@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Tra cứu lịch dương và lịch âm Việt Nam nhanh gọn.',
   manifest: './manifest.webmanifest',
   icons: {
-    icon: [{ url: './favicon.svg', type: 'image/svg+xml' }],
+    icon: [{ url: './favicon.png', sizes: '64x64', type: 'image/png' }],
     apple: [{ url: './apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
   appleWebApp: {
